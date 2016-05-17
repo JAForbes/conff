@@ -1,0 +1,14 @@
+{
+
+    "watchify": [
+        "app.js"
+        , { "transform": ["browserify-css"], "outfile": "bundle.min.js", "verbose": true }
+    ]
+
+    ,"browserify": [
+        "app.js"
+        ,{ "transform": ["browserify-css"] }
+    ]
+
+    ,"uglifyjs": [{ "mangle": true, "compress": true }]
+}
