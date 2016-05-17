@@ -1,6 +1,6 @@
 {
   "name": "conff",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Generate command line flags from a standard config file.",
   "main": "conff.js",
   "scripts": {
