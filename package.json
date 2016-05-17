@@ -1,0 +1,19 @@
+{
+  "name": "conff",
+  "version": "1.0.0",
+  "description": "Generate command line flags from a standard config file.",
+  "main": "conff.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JAForbes/conff.git"
+  },
+  "author": "james.a.forbes@gmail.com <=> (http://james-forbes.com)",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/JAForbes/conff/issues"
+  },
+  "homepage": "https://github.com/JAForbes/conff#readme"
+}

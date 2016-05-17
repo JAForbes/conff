@@ -54,7 +54,7 @@ between different scripts
 - Encourages use of verbose flags instead of single letter options
 
 - Removes the need for project specific config files with their own
-particular
+particular translation logic
 
 #### JSON structure
 
