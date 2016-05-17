@@ -1,3 +1,4 @@
+#!/usr/bin/env node
 var fs = require('fs')
 
 var objectToFlags = function(object){
@@ -15,8 +16,24 @@ var objectToFlags = function(object){
 
 var key = process.argv[2]
 
-var config = JSON.parse( fs.readFileSync( './conff.json' ))
+if(!key){
+    console.error('Error: You must a command that references a key in ./conff.json')
+    process.exit(1)
+}
+
+try {
+    var config = JSON.parse( fs.readFileSync( './conff.json' ))
+} catch(e) {
+    console.error('Error: Could not find a valud ./conff.json file')
+    process.exit(1)
+}
+
 var options = config[key]
+
+if(!options){
+    console.error('Error: The command you provided did not have a match in ./conff.json')
+    process.exit(1)
+}
 
 var computed =
     options
