@@ -14,7 +14,7 @@
         , { "outfile": "bundle.min.js", "verbose": true }
     ]
     ,"start": [
-        "conff.js compile", { "exec": true }, "|"
-        ,"conff.js compress", { "pipe": true , "exec": true }
+        "conff compile", { "exec": true }, "|"
+        ,"conff compress", { "pipe": true , "exec": true }
     ]
 }
