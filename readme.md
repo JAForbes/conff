@@ -43,6 +43,12 @@ The above command will expand into:
 browserify app.js --transform browserify-css | uglifyjs --mangle --compress > bundle.min.js
 ```
 
+If you are on windows you can use `--exec` and `--pipe`:
+
+```bash
+conff compile --exec | conff compress --pipe --exec
+```
+
 #### Why?
 
 - A single configuration file for any bash command simplifies your
