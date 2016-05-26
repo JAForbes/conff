@@ -14,10 +14,10 @@ function has(str){ return function(v){
 
 function exec(command, stdin){
 
-    var executed = cp.exec(command, { stdio: ['pipe', 'pipe']})
+    var executed = cp.exec(command)
 
-    executed.stdout.pipe(process.stdout)
     executed.stderr.pipe(process.stderr)
+    executed.stdout.pipe(process.stdout)
 
     if( stdin ){
         process.stdin.pipe(executed.stdin)

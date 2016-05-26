@@ -11,8 +11,9 @@ Generate command line flags from a standard config file.
 ```json
 {
 
-    "watchify": [
-        "app.js"
+    "watch": [
+        "watchify"
+        ,"app.js"
         ,{
             "transform": ["browserify-css"]
             , "outfile": "bundle.min.js"
@@ -20,19 +21,20 @@ Generate command line flags from a standard config file.
         }
     ]
 
-    ,"browserify": [
+    ,"compile": [
+        "browserify"
         "app.js"
         ,{ "transform": ["browserify-css"] }
     ]
 
-    ,"uglifyjs": [{ "mangle": true, "compress": true }]
+    ,"compress": ["uglifyjs", { "mangle": true, "compress": true }]
 }
 ```
 
 Then in bash:
 
 ```bash
-`conff browserify` | `conf uglifyjs` > bundle.min.js
+`conff compile` | `conf compress` > bundle.min.js
 ```
 
 The above command will expand into:
@@ -58,7 +60,7 @@ particular translation logic
 
 #### JSON structure
 
-The top level key is the name of the command you would like to execute.
+The top level key is the name of your command.
 The top level value should be an array containing either:
 
 - a string
@@ -77,7 +79,7 @@ If a value is a boolean, only the key will be added.
 
 ##### Strings
 
-Strings are inserted verbatim in order.  They will usually be filenames.
+Strings are inserted verbatim in order.  They will usually be either filenames or commands.
 
 #### Roadmap
 
