@@ -1,5 +1,29 @@
 #!/usr/bin/env node
 var fs = require('fs')
+var cp = require('child_process')
+
+
+function complement(f){ return function(v){
+    return !f(v)
+}}
+
+function has(str){ return function(v){
+    return v.indexOf(str) > -1
+}}
+
+function exec(command, stdin){
+
+    var executed = cp.exec(command, { stdio: ['pipe', 'pipe']})
+
+    executed.stdout.pipe(process.stdout)
+    executed.stderr.pipe(process.stderr)
+
+    if( stdin ){
+        process.stdin.pipe(executed.stdin)
+    }
+}
+
+function identity(i){ return i }
 
 var objectToFlags = function(object){
     return Object.keys(object)
@@ -14,7 +38,9 @@ var objectToFlags = function(object){
         }, [])
 }
 
-var key = process.argv[2]
+var args = process.argv.slice(2)
+var flags = args.filter(has('--'))
+var key = args.filter( complement(has('--')))[0]
 
 if(!key){
     console.error('Error: You must a command that references a key in ./conff.json')
@@ -45,6 +71,12 @@ var computed =
                 : objectToFlags(value)
             )
     }, [])
-    .join(' ')
 
-console.log(key+ ' ' +computed)
+var command = computed.join(' ')
+
+if( flags.some(has('--exec')) ){
+    var stdin = flags.some(has('--pipe'))
+    exec(command, stdin)
+} else {
+    console.log(command)
+}
